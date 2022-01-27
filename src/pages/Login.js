@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { setLocalStorage } from '../services/LocalStorage';
+import './pages.css/Login.css';
 
 const Login = () => {
   const history = useHistory();
@@ -27,29 +28,35 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <input
-        type="email"
-        // name="email"
-        // value={ email }
-        data-testid="email-input"
-        onChange={ ({ target }) => setEmail(target.value) }
-      />
-      <input
-        type="password"
-        // name="password"
-        // value={ password }
-        onChange={ ({ target }) => setPassword(target.value) }
-        data-testid="password-input"
-      />
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ disabled }
-        onClick={ handleClickLogin }
-      >
-        Entrar
-      </button>
+    <div className="container-fluid">
+      <div className="container-component">
+        <h1>Login</h1>
+        <input
+          className="input"
+          type="email"
+          // name="email"
+          // value={ email }
+          data-testid="email-input"
+          onChange={ ({ target }) => setEmail(target.value) }
+        />
+        <input
+          className="input"
+          type="password"
+          // name="password"
+          // value={ password }
+          onChange={ ({ target }) => setPassword(target.value) }
+          data-testid="password-input"
+        />
+        <button
+          className="btn-login"
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ disabled }
+          onClick={ handleClickLogin }
+        >
+          Entrar
+        </button>
+      </div>
     </div>
   );
 };

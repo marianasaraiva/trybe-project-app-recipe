@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media only screen and ( max-width : 600px ) {
+
+  body { background-color: white; }
+
+  .container-fluid {
+    align-items: center;
+    display: grid;
+    height: 90vw;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .container-component {
+    display: grid;
+  }
+
+  .container-component h1 {
+    margin: auto;
+    margin-bottom: 4vw;
+  }
+
+  .input {
+    border: 0.5vw solid black;
+    border-radius: 1.5vw;
+    color: black;
+    height: 10vw;
+    margin-bottom: 2vw;
+    width: 80vw;
+  }
+
+  .btn-login {
+    background-color: rgb(2, 233, 2);
+    border-radius: 1.5vw;
+    color: black;
+    font-size: 5vw;
+    font-weight: 600;
+    height: 10vw;
+  }
+
+  .btn-login:disabled {
+    background-color: grey;
+  }
+
+}
