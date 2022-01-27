@@ -1,0 +1,38 @@
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: white;
+  }
+  .container-fluid {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 90vw;
+  }
+  .container-component {
+    display: grid;
+  }
+  .container-component h1{
+    margin: auto;
+    margin-bottom: 4vw;
+  }
+  .input {
+    border: 0.5vw solid black;
+    color: black;
+    margin-bottom: 2vw;
+    border-radius: 1.5vw;
+    width: 80vw;
+    height: 10vw;
+  }
+  .btn-login {
+    background-color: rgb(2, 233, 2);
+    font-size: 5vw;
+    font-weight: 600;
+    color: black;
+    border-radius: 1.5vw;
+    height: 10vw;
+  }
+  .btn-login:disabled {
+    background-color: grey;
+  }
+}
