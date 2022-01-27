@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
-function Header() {
+const removeScan = [
+  'Explore',
+  'Explore Foods',
+  'Explore Drinks',
+  'Explore Ingredients',
+  'Profile',
+  'Done Recipes',
+  'Favorite Recipes',
+];
+
+function Header({ title }) {
   const [hidden, setHidden] = useState(false);
   const history = useHistory();
   return (
@@ -15,13 +26,16 @@ function Header() {
         >
           <img src={ profileIcon } data-testid="profile-top-btn" alt="profile" />
         </button>
-        <h1 data-testid="page-title">Foods</h1>
-        <button
-          type="button"
-          onClick={ () => setHidden(!hidden) }
-        >
-          <img src={ searchIcon } data-testid="search-top-btn" alt="search" />
-        </button>
+        <h1 data-testid="page-title">{ title }</h1>
+        {removeScan.includes(title) === false
+        && (
+          <button
+            type="button"
+            onClick={ () => setHidden(!hidden) }
+          >
+            <img src={ searchIcon } data-testid="search-top-btn" alt="search" />
+          </button>
+        )}
         { hidden && <input
           type="text"
           data-testid="search-input"
@@ -30,5 +44,9 @@ function Header() {
     </header>
   );
 }
+
+Header.propTypes = {
+  title: PropTypes.string,
+}.isRequired;
 
 export default Header;
