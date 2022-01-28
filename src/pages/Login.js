@@ -34,16 +34,12 @@ const Login = () => {
         <input
           className="input"
           type="email"
-          // name="email"
-          // value={ email }
           data-testid="email-input"
           onChange={ ({ target }) => setEmail(target.value) }
         />
         <input
           className="input"
           type="password"
-          // name="password"
-          // value={ password }
           onChange={ ({ target }) => setPassword(target.value) }
           data-testid="password-input"
         />

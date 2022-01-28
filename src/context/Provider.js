@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Context from './Context';
-import searchApi from '../services/requestApi';
-// import { useHistory } from 'react-router-dom';
+import { searchApi } from '../services/requestApi';
 
 const Provider = ({ children }) => {
   const [drinksOrFood, setDrinksOrFood] = useState([]);
@@ -18,6 +17,7 @@ const Provider = ({ children }) => {
 
   const context = {
     drinksOrFood,
+    setDrinksOrFood,
     fetchApiFoodOrDrink,
   };
 
