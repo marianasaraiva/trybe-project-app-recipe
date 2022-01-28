@@ -11,7 +11,7 @@ function Footer() {
     <footer data-testid="footer">
       <button
         type="button"
-        onClick={ () => history.pushState('/drinks') }
+        onClick={ () => history.push('/drinks') }
       >
         <img src={ drinkIcon } alt="drinks-bottom" data-testid="drinks-bottom-btn" />
       </button>
