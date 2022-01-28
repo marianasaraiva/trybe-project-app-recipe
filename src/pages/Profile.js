@@ -1,15 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { getLocalStorage } from '../services/LocalStorage';
 
-function Profile({ email }) {
+function Profile() {
   const history = useHistory();
+
+  const clearAndRedirect = () => {
+    localStorage.clear();
+    history.push('/');
+  };
+
   return (
     <div>
       <Header title="Profile" />
-      <div data-testid="profile-email">{ email }</div>
+      <div data-testid="profile-email">
+        { JSON.parse(getLocalStorage('user')).email }
+      </div>
       <button
         type="button"
         data-testid="profile-done-btn"
@@ -27,7 +35,7 @@ function Profile({ email }) {
       <button
         type="button"
         data-testid="profile-logout-btn"
-        onClick={ () => history.push('/') }
+        onClick={ clearAndRedirect }
       >
         Logout
       </button>
@@ -35,9 +43,5 @@ function Profile({ email }) {
     </div>
   );
 }
-
-Profile.propTypes = {
-  email: PropTypes.string.isRequired,
-};
 
 export default Profile;
