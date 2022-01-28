@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchInput from './SearchInput';
+import './components.css/Header.css';
 
 const removeScan = [
   'Explore',
@@ -20,12 +21,17 @@ function Header({ title }) {
   const history = useHistory();
   return (
     <header>
-      <div>
+      <div className="container-fluid-header">
         <button
           type="button"
           onClick={ () => history.push('/profile') }
         >
-          <img src={ profileIcon } data-testid="profile-top-btn" alt="profile" />
+          <img
+            className="icon"
+            src={ profileIcon }
+            data-testid="profile-top-btn"
+            alt="profile"
+          />
         </button>
         <h1 data-testid="page-title">{ title }</h1>
         {removeScan.includes(title) === false
@@ -34,9 +40,16 @@ function Header({ title }) {
             type="button"
             onClick={ () => setHidden(!hidden) }
           >
-            <img src={ searchIcon } data-testid="search-top-btn" alt="search" />
+            <img
+              className="icon"
+              src={ searchIcon }
+              data-testid="search-top-btn"
+              alt="search"
+            />
           </button>
         )}
+      </div>
+      <div>
         { hidden && <SearchInput /> }
       </div>
     </header>
