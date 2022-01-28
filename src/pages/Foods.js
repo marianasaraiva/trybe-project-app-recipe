@@ -54,7 +54,7 @@ const Foods = () => {
         </button>
       </div>
       { drinksOrFood.length > 0 && (
-        drinksOrFood.map((comida, index) => (
+        drinksOrFood.slice(0, +'12').map((comida, index) => (
           <button
             key={ index }
             type="button"

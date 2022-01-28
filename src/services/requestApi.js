@@ -24,7 +24,7 @@ export const searchApi = async (search, radioSelect, title) => {
       .then((response) => response.json())
       .then((data) => data[setType]);
   }
-  return result.slice(0, +'12');
+  return result;
 };
 
 export const requestApiAllFoods = () => (

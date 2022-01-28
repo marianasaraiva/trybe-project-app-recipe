@@ -16,13 +16,13 @@ const Provider = ({ children }) => {
 
   const fetchApiFoodOrDrink = async (search, type, title) => {
     const returnApi = await searchApi(search, type, title);
-    const teste4 = (title === 'Foods') ? 'idMeal' : 'idDrink';
+    const handleTitle = (title === 'Foods') ? 'idMeal' : 'idDrink';
 
     if (returnApi === null) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
     if (returnApi.length === 1) {
-      history.push(`/${title.toLowerCase()}/${returnApi[0][teste4]}`);
+      history.push(`/${title.toLowerCase()}/${returnApi[0][handleTitle]}`);
     }
 
     setDrinksOrFood(returnApi);
@@ -30,27 +30,27 @@ const Provider = ({ children }) => {
 
   const handleClickAllFilterFoods = async (item) => {
     if (item === 'Foods') {
-      const teste20 = await requestApiAllFoods();
-      setDrinksOrFood(teste20);
+      const returnApiFoods = await requestApiAllFoods();
+      setDrinksOrFood(returnApiFoods);
     } else {
-      const teste21 = await requestApiAllDrinks();
-      setDrinksOrFood(teste21);
+      const returnApiDrinks = await requestApiAllDrinks();
+      setDrinksOrFood(returnApiDrinks);
     }
   };
 
   const handleClickFilter = async (item, page) => {
     setSelectButton(item);
     if (item !== selectButton) {
-      const teste = await filterFoodsOrDrinks(item, page);
-      setDrinksOrFood(teste);
+      const returnFilterDrinksOrFoods = await filterFoodsOrDrinks(item, page);
+      setDrinksOrFood(returnFilterDrinksOrFoods);
     }
     if (page === 'Foods' && item === selectButton) {
-      const teste10 = await requestApiAllFoods();
-      setDrinksOrFood(teste10);
+      const returnAllFoods = await requestApiAllFoods();
+      setDrinksOrFood(returnAllFoods);
     }
     if (page === 'Drinks' && item === selectButton) {
-      const teste11 = await requestApiAllDrinks();
-      setDrinksOrFood(teste11);
+      const returnAllDrinks = await requestApiAllDrinks();
+      setDrinksOrFood(returnAllDrinks);
     }
   };
 
