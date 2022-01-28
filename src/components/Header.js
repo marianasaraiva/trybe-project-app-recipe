@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import SearchInput from './SearchInput';
 
 const removeScan = [
   'Explore',
@@ -36,10 +37,7 @@ function Header({ title }) {
             <img src={ searchIcon } data-testid="search-top-btn" alt="search" />
           </button>
         )}
-        { hidden && <input
-          type="text"
-          data-testid="search-input"
-        /> }
+        { hidden && <SearchInput /> }
       </div>
     </header>
   );
