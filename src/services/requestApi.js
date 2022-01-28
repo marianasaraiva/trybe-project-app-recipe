@@ -1,7 +1,7 @@
 const MEALDB_API = 'https://www.themealdb.com/api/';
 const COCKTAILDB_API = 'https://www.thecocktaildb.com/api/';
 
-const searchApi = async (search, radioSelect, title) => {
+export const searchApi = async (search, radioSelect, title) => {
   const setURL = (title === 'Foods') ? MEALDB_API : COCKTAILDB_API;
   const setType = (title === 'Foods') ? 'meals' : 'drinks';
   let result = [];
@@ -22,8 +22,17 @@ const searchApi = async (search, radioSelect, title) => {
       .then((response) => response.json())
       .then((data) => data[setType]);
   }
-  // console.log(result);
   return result;
 };
 
-export default searchApi;
+export const requestApiAllFoods = () => (
+  fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+    .then((response) => response.json())
+    .then((data) => data.meals)
+);
+
+export const requestApiAllDrinks = () => (
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+    .then((response) => response.json())
+    .then((data) => data.drinks)
+);

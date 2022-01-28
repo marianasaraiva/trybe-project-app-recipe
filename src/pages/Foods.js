@@ -3,9 +3,10 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Context from '../context/Context';
+import { requestApiAllFoods } from '../services/requestApi';
 
 const Foods = () => {
-  const { drinksOrFood } = useContext(Context);
+  const { drinksOrFood, setDrinksOrFood } = useContext(Context);
   const history = useHistory();
 
   useEffect(() => {
@@ -13,6 +14,14 @@ const Foods = () => {
       history.push(`/foods/${drinksOrFood[0].idMeal}`);
     }
   }, [drinksOrFood, history]);
+
+  useEffect(() => {
+    const teste2 = async () => {
+      const teste = await requestApiAllFoods();
+      return setDrinksOrFood(teste);
+    };
+    teste2();
+  }, [setDrinksOrFood]);
 
   return (
     <div>
