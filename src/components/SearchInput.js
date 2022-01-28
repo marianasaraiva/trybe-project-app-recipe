@@ -4,7 +4,7 @@ import Context from '../context/Context';
 function SearchInput() {
   const [search, setSearch] = useState('');
   console.log(search);
-  const [radioSearch, setRadioSearch] = useState('ingredients');
+  const [radioSearch, setRadioSearch] = useState('ingredient');
   const { fetchApiFoodOrDrink } = useContext(Context);
 
   return (

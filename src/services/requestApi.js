@@ -3,7 +3,7 @@ const MEALDB_API = 'https://www.themealdb.com/api/';
 
 const searchApi = async (search, radioSelect) => {
   let result = {};
-  if (radioSelect === 'ingredients') {
+  if (radioSelect === 'ingredient') {
     result = await fetch(`${MEALDB_API}json/v1/1/filter.php?i=${search}`)
       .then((response) => response.json());
   } else if (radioSelect === 'name') {
@@ -17,7 +17,7 @@ const searchApi = async (search, radioSelect) => {
     result = await fetch(`${MEALDB_API}json/v1/1/search.php?f=${search}`)
       .then((response) => response.json());
   }
-  console.log(result);
+  return result;
 };
 
 export default searchApi;
