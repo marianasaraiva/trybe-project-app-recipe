@@ -8,8 +8,12 @@ const Provider = ({ children }) => {
   const [drinksOrFood, setDrinksOrFood] = useState([]);
 
   const fetchApiFoodOrDrink = async (search, type, title) => {
-    const teste = await searchApi(search, type, title);
-    setDrinksOrFood(teste);
+    const returnAPi = await searchApi(search, type, title);
+
+    if (teste === null) {
+      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+    setDrinksOrFood(returnAPi);
   };
 
   const context = {

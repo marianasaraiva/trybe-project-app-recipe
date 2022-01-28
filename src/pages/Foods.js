@@ -7,7 +7,6 @@ import Context from '../context/Context';
 const Foods = () => {
   const { drinksOrFood } = useContext(Context);
   const history = useHistory();
-  console.log(drinksOrFood);
 
   useEffect(() => {
     if (drinksOrFood.length === 1) {
@@ -18,6 +17,18 @@ const Foods = () => {
   return (
     <div>
       <Header title="Foods" />
+      { drinksOrFood.length > 1 && (
+        drinksOrFood.slice(0, +'12').map((comida, index) => (
+          <div key={ index } data-testid={ `${index}-recipe-card` }>
+            <img
+              src={ comida.strMealThumb }
+              alt="img comida"
+              data-testid={ `${index}-card-img` }
+            />
+            <h1 data-testid={ `${index}-card-name` }>{ comida.strMeal }</h1>
+          </div>
+        ))
+      )}
       <Footer />
     </div>
   );
