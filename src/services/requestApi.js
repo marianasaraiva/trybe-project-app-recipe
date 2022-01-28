@@ -1,5 +1,7 @@
 const MEALDB_API = 'https://www.themealdb.com/api/';
+const MEALDB_FILTER = 'https://www.themealdb.com/api/json/v1/1/filter.php?c=';
 const COCKTAILDB_API = 'https://www.thecocktaildb.com/api/';
+const COCKTAILDB_FILTER = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=';
 
 export const searchApi = async (search, radioSelect, title) => {
   const setURL = (title === 'Foods') ? MEALDB_API : COCKTAILDB_API;
@@ -22,17 +24,37 @@ export const searchApi = async (search, radioSelect, title) => {
       .then((response) => response.json())
       .then((data) => data[setType]);
   }
-  return result;
+  return result.slice(0, +'12');
 };
 
 export const requestApiAllFoods = () => (
   fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
     .then((response) => response.json())
-    .then((data) => data.meals)
+    .then((data) => data.meals.slice(0, +'12'))
 );
 
 export const requestApiAllDrinks = () => (
   fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
     .then((response) => response.json())
-    .then((data) => data.drinks)
+    .then((data) => data.drinks.slice(0, +'12'))
 );
+
+export const requestApiFoodsList = () => (
+  fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')
+    .then((response) => response.json())
+    .then((data) => data.meals.slice(0, +'5'))
+);
+
+export const requestApiDrinksList = () => (
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+    .then((response) => response.json())
+    .then((data) => data.drinks.slice(0, +'5'))
+);
+
+export const filterFoodsOrDrinks = async (filterName, type) => {
+  const setUrl = (type === 'Foods') ? MEALDB_FILTER : COCKTAILDB_FILTER;
+  const setType = (type === 'Foods') ? 'meals' : 'drinks';
+  return fetch(`${setUrl}${filterName}`)
+    .then((response) => response.json())
+    .then((data) => data[setType].slice(0, +'12'));
+};
