@@ -7,8 +7,8 @@ import searchApi from '../services/requestApi';
 const Provider = ({ children }) => {
   const [drinksOrFood, setDrinksOrFood] = useState([]);
 
-  const fetchApiFoodOrDrink = async (search, type) => {
-    const teste = searchApi(search, type);
+  const fetchApiFoodOrDrink = async (search, type, title) => {
+    const teste = await searchApi(search, type, title);
     setDrinksOrFood(teste);
   };
 

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import Context from '../context/Context';
 
-function SearchInput() {
+function SearchInput({ title }) {
   const [search, setSearch] = useState('');
-  console.log(search);
   const [radioSearch, setRadioSearch] = useState('ingredient');
   const { fetchApiFoodOrDrink } = useContext(Context);
 
@@ -53,7 +53,7 @@ function SearchInput() {
         <button
           type="button"
           data-testid="exec-search-btn"
-          onClick={ () => fetchApiFoodOrDrink(search, radioSearch) }
+          onClick={ () => fetchApiFoodOrDrink(search, radioSearch, title) }
         >
           Search
         </button>
@@ -61,5 +61,9 @@ function SearchInput() {
     </div>
   );
 }
+
+SearchInput.propTypes = {
+  title: PropTypes.string,
+}.isRequired;
 
 export default SearchInput;
