@@ -17,6 +17,18 @@ const Drinks = () => {
   return (
     <div>
       <Header title="Drinks" />
+      { drinksOrFood.length > 1 && (
+        drinksOrFood.slice(0, +'12').map((bebida, index) => (
+          <div key={ index } data-testid={ `${index}-recipe-card` }>
+            <img
+              src={ bebida.strDrinkThumb }
+              alt="img comida"
+              data-testid={ `${index}-card-img` }
+            />
+            <h1 data-testid={ `${index}-card-name` }>{ bebida.strDrink }</h1>
+          </div>
+        ))
+      )}
       <Footer />
     </div>
   );
