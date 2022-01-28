@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import Context from '../context/Context';
 
 function SearchInput() {
   const [search, setSearch] = useState('');
+  console.log(search);
   const [radioSearch, setRadioSearch] = useState('ingredients');
+  const { fetchApiFoodOrDrink } = useContext(Context);
 
   return (
     <div>
@@ -42,7 +45,7 @@ function SearchInput() {
         <button
           type="button"
           data-testid="exec-search-btn"
-          onClick={ () => handleClickSearch(search, radioSearch) }
+          onClick={ () => fetchApiFoodOrDrink(search, radioSearch) }
         >
           Search
         </button>
