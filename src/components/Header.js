@@ -50,7 +50,7 @@ function Header({ title }) {
         )}
       </div>
       <div>
-        { hidden && <SearchInput /> }
+        { hidden && <SearchInput title={ title } /> }
       </div>
     </header>
   );
