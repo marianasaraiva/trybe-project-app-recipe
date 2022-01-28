@@ -10,7 +10,7 @@ const Provider = ({ children }) => {
   const fetchApiFoodOrDrink = async (search, type, title) => {
     const returnAPi = await searchApi(search, type, title);
 
-    if (teste === null) {
+    if (returnAPi === null) {
       return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
     setDrinksOrFood(returnAPi);
