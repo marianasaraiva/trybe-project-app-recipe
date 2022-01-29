@@ -1,0 +1,17 @@
+.recomendations {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.divImg {
+  width: 100%;
+}
+
+.divImg img {
+  width: 100vw;
+}
+
+.buttonFooter {
+  bottom: 0;
+  position: fixed;
+}

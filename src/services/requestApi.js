@@ -58,3 +58,15 @@ export const filterFoodsOrDrinks = async (filterName, type) => {
     .then((response) => response.json())
     .then((data) => data[setType].slice(0, +'12'));
 };
+
+export const getDetailsFoods = (id) => (
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then((response) => response.json())
+    .then((data) => data)
+);
+
+export const getDetailsDrinks = (id) => (
+  fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then((response) => response.json())
+    .then((data) => data)
+);
