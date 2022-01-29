@@ -15,27 +15,27 @@ const Foods = () => {
   const [filterOptions, setFilterOptions] = useState([]);
   const history = useHistory();
 
-  // useEffect(() => {
-  //   if (drinksOrFood.length === 1) {
-  //     history.push(`/foods/${drinksOrFood[0].idMeal}`);
-  //   }
-  // }, [drinksOrFood, history]);
-
   useEffect(() => {
-    const teste2 = async () => {
-      const teste = await requestApiAllFoods();
+    const returnOptionsAPi = async () => {
       const returnOptionsApi = await requestApiFoodsList();
       setFilterOptions(returnOptionsApi);
-      return setDrinksOrFood(teste);
     };
-    teste2();
+    returnOptionsAPi();
+  }, [setFilterOptions]);
+
+  useEffect(() => {
+    const setFoodsApi = async () => {
+      const returnFoods = await requestApiAllFoods();
+      setDrinksOrFood(returnFoods);
+    };
+    setFoodsApi();
   }, [setDrinksOrFood]);
 
   return (
     <div>
       <Header title="Foods" />
       <div>
-        { filterOptions.map(({ strCategory }) => (
+        { filterOptions.length > 0 && filterOptions.map(({ strCategory }) => (
           <button
             type="button"
             key={ strCategory }

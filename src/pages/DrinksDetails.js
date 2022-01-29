@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import IgredientsAndValues from '../components/IgredientsAndValues';
 import { getDetailsDrinks, requestApiAllFoods } from '../services/requestApi';
+import './pages.css/FoodsDetails.css';
 
 function DrinksDetails(props) {
   const { match: { params: { id } } } = props;
-  const history = useHistory();
   const [detailsItem, setDetailsItem] = useState([]);
   const [recomendation, setRecomendation] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const teste = async (idItem) => {
       const teste2 = await getDetailsDrinks(idItem);
-      console.log(teste2.drinks);
       setDetailsItem(teste2.drinks);
     };
     teste(id);
@@ -40,7 +40,6 @@ function DrinksDetails(props) {
         <p data-testid="instructions">{ detailsItem[0].strInstructions }</p>
         <video data-testid="video"><track kind="captions" /></video>
         <div className="recomendations">
-          {console.log(recomendation)}
           {recomendation.slice(0, +'6').map((item, index) => (
             <div
               key={ index }

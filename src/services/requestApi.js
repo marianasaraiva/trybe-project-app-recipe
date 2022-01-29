@@ -62,7 +62,8 @@ export const filterFoodsOrDrinks = async (filterName, type) => {
 export const getDetailsFoods = (id) => (
   fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
     .then((response) => response.json())
-    .then((data) => data)
+    .then((data) => data.meals)
+    .catch(() => [])
 );
 
 export const getDetailsDrinks = (id) => (
