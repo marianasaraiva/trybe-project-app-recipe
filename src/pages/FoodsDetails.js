@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import IgredientsAndValues from '../components/IgredientsAndValues';
 import { getDetailsFoods, requestApiAllDrinks } from '../services/requestApi';
 import './pages.css/FoodsDetails.css';
 
-function FoodsDetails(props) {
-  const { match: { params: { id } } } = props;
+function FoodsDetails() {
+  // const { match: { params: { id } } } = props;
+  const { id } = useParams();
   const [detailsItem, setDetailsItem] = useState([]);
   const [recomendation, setRecomendation] = useState([]);
   const history = useHistory();
-
-  useEffect(() => {
-    const teste = async (idItem) => {
-      const teste2 = await getDetailsFoods(idItem);
-      setDetailsItem(teste2.meals);
-    };
-    teste(id);
-  }, [id, setDetailsItem]);
 
   useEffect(() => {
     const getRecomendation = async () => {
@@ -26,6 +19,14 @@ function FoodsDetails(props) {
     };
     getRecomendation();
   }, []);
+
+  useEffect(() => {
+    const requestApi = async (idItem) => {
+      const detailsFoods = await getDetailsFoods(idItem);
+      setDetailsItem(detailsFoods);
+    };
+    requestApi(id);
+  }, [id, setDetailsItem]);
 
   return (
     detailsItem.length > 0 && (

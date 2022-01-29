@@ -19,28 +19,30 @@ import Profile from '../pages/Profile';
 
 const Routes = () => (
   <Switch>
-    <Route path="/foods" component={ Foods } />
-    <Route path="/foods/:id" component={ FoodsDetails } />
-    <Route path="/drinks/:id" component={ DrinksDetails } />
-    <Route path="/drinks" component={ Drinks } />
-    <Route path="/foods/:id/in-progress" component={ FoodsInProgress } />
-    <Route path="/drinks/:id/in-progress" component={ DrinksInProgres } />
-    <Route path="/explore" component={ Explore } />
-    <Route path="/explore/foods" component={ ExploreFoods } />
-    <Route path="/explore/drinks" component={ ExploreDrinks } />
-    <Route path="/explore/foods/ingredients" component={ ExploreFoodIngredients } />
-    <Route path="/profile" component={ Profile } />
+    <Route path="/foods" component={ Foods } exact />
+    <Route path="/foods/:id" component={ FoodsDetails } exact />
+    <Route path="/drinks/:id" component={ DrinksDetails } exact />
+    <Route path="/drinks" component={ Drinks } exact />
+    <Route path="/foods/:id/in-progress" component={ FoodsInProgress } exact />
+    <Route path="/drinks/:id/in-progress" component={ DrinksInProgres } exact />
+    <Route path="/explore" component={ Explore } exact />
+    <Route path="/explore/foods" component={ ExploreFoods } exact />
+    <Route path="/explore/drinks" component={ ExploreDrinks } exact />
+    <Route path="/explore/foods/ingredients" component={ ExploreFoodIngredients } exact />
+    <Route path="/profile" component={ Profile } exact />
+    <Route exact path="/" component={ Login } />
     <Route
       path="/explore/drinks/ingredients"
       component={ ExploreDrinkIngredients }
+      exact
     />
     <Route
       path="/explore/foods/nationalities"
       component={ ExploreFoodNationalities }
+      exact
     />
-    <Route path="/done-recipes" component={ DoneRecipes } />
-    <Route path="/favorite-recipes" component={ FavoriteRecipes } />
-    <Route exact path="/" component={ Login } />
+    <Route path="/done-recipes" component={ DoneRecipes } exact />
+    <Route path="/favorite-recipes" component={ FavoriteRecipes } exact />
   </Switch>
 );
 
