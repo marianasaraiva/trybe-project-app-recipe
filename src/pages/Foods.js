@@ -15,12 +15,6 @@ const Foods = () => {
   const [filterOptions, setFilterOptions] = useState([]);
   const history = useHistory();
 
-  // useEffect(() => {
-  //   if (drinksOrFood.length === 1) {
-  //     history.push(`/foods/${drinksOrFood[0].idMeal}`);
-  //   }
-  // }, [drinksOrFood, history]);
-
   useEffect(() => {
     const teste2 = async () => {
       const teste = await requestApiAllFoods();

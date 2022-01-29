@@ -16,7 +16,7 @@ function Profile() {
     <div>
       <Header title="Profile" />
       <div data-testid="profile-email">
-        { JSON.parse(getLocalStorage('user')).email }
+        { getLocalStorage('user') && JSON.parse(getLocalStorage('user')).email }
       </div>
       <button
         type="button"
