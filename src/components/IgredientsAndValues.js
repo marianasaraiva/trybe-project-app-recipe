@@ -5,7 +5,6 @@ function IgredientsAndValues(props) {
   const { detailsItem, typeFilter } = props;
   return (
     <div>
-      {console.log(Object.entries(detailsItem))}
       {
         Object.entries(detailsItem)
           .filter((a) => a[0]
