@@ -71,3 +71,15 @@ export const getDetailsDrinks = (id) => (
     .then((response) => response.json())
     .then((data) => data)
 );
+
+export const getRandomFood = () => (
+  fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+    .then((response) => response.json())
+    .then((data) => data.meals)
+);
+
+export const getRandomDrink = () => (
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+    .then((response) => response.json())
+    .then((data) => data.drinks)
+);
