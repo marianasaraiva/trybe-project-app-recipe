@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { getRandomFood } from '../services/requestApi';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function ExploreFoods() {
   const history = useHistory();
+  const [result, setResult] = useState(0);
+
+  const returnAPI = async () => {
+    const response = await getRandomFood();
+    console.log(response[0].idMeal);
+    setResult(response[0].idMeal);
+  };
+
+  useEffect(() => {
+    returnAPI();
+  }, []);
+
   return (
     <div>
       <Header title="Explore Foods" />
@@ -25,7 +38,7 @@ function ExploreFoods() {
       <button
         type="button"
         data-testid="explore-surprise"
-        onClick={ () => history.push('/foods/52771') }
+        onClick={ () => history.push(`/foods/${result}`) }
       >
         Surprise me!
       </button>
