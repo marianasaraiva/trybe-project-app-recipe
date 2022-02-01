@@ -5,12 +5,12 @@ import IgredientsAndValues from '../components/IgredientsAndValues';
 import { getDetailsDrinks, requestApiAllFoods } from '../services/requestApi';
 import './pages.css/FoodsDetails.css';
 import { getLocalStorage, setLocalStorage } from '../services/LocalStorage';
-import { concatItensRecipes, handleFavoriteDrinks, removeFavorite } from '../helpers';
+import { handleFavoriteDrinks, removeFavorite } from '../helpers';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
-const i = 'strIngredient';
-const x = 'strMeasure';
+// const i = 'strIngredient';
+// const x = 'strMeasure';
 
 function DrinksDetails(props) {
   const { match: { params: { id } } } = props;
@@ -46,14 +46,14 @@ function DrinksDetails(props) {
   }, [id]);
 
   const handleClickStartContinue = () => {
-    const filter = concatItensRecipes(detailsItem[0], i, x);
+    // const filter = concatItensRecipes(detailsItem[0], i, x);
     if (getLocalStorage('inProgressRecipes')) {
       const returnStorage = JSON.parse(getLocalStorage('inProgressRecipes'));
       const attStorage = {
         ...returnStorage,
         cocktails: {
           ...returnStorage.cocktails,
-          [id]: filter,
+          [id]: '',
         },
       };
       setLocalStorage('inProgressRecipes', JSON.stringify(attStorage));
@@ -61,7 +61,7 @@ function DrinksDetails(props) {
     } else {
       const setStorage = {
         cocktails: {
-          [id]: filter,
+          [id]: '',
         },
         meals: {},
       };

@@ -5,12 +5,12 @@ import IgredientsAndValues from '../components/IgredientsAndValues';
 import { getDetailsFoods, requestApiAllDrinks } from '../services/requestApi';
 import './pages.css/FoodsDetails.css';
 import { getLocalStorage, setLocalStorage } from '../services/LocalStorage';
-import { concatItensRecipes, handleFavorite, removeFavorite } from '../helpers';
+import { handleFavorite, removeFavorite } from '../helpers';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
-const i = 'strIngredient';
-const x = 'strMeasure';
+// const i = 'strIngredient';
+// const x = 'strMeasure';
 
 function FoodsDetails() {
   const { id } = useParams();
@@ -32,7 +32,6 @@ function FoodsDetails() {
   useEffect(() => {
     if (getLocalStorage('inProgressRecipes')) {
       const teste = JSON.parse(getLocalStorage('inProgressRecipes'));
-      console.log(Object.keys(teste.meals).includes(id));
       setButton(Object.keys(teste.meals).includes(id));
     }
     if (getLocalStorage('favoriteRecipes')) {
@@ -54,14 +53,14 @@ function FoodsDetails() {
   }, [id, setDetailsItem]);
 
   const handleClickStartContinue = () => {
-    const filter = concatItensRecipes(detailsItem[0], i, x);
+    // const filter = concatItensRecipes(detailsItem[0], i, x);
     if (getLocalStorage('inProgressRecipes')) {
       const returnStorage = JSON.parse(getLocalStorage('inProgressRecipes'));
       const attStorage = {
         ...returnStorage,
         meals: {
           ...returnStorage.meals,
-          [id]: filter,
+          [id]: '',
         },
       };
       setLocalStorage('inProgressRecipes', JSON.stringify(attStorage));
@@ -70,7 +69,7 @@ function FoodsDetails() {
       const setStorage = {
         cocktails: {},
         meals: {
-          [id]: filter,
+          [id]: '',
         },
       };
       setLocalStorage('inProgressRecipes', JSON.stringify(setStorage));
@@ -87,7 +86,6 @@ function FoodsDetails() {
   return (
     detailsItem.length > 0 && (
       <div>
-        {console.log(detailsItem[0])}
         <img src={ detailsItem[0].strMealThumb } data-testid="recipe-photo" alt="img" />
         <h1 data-testid="recipe-title">{ detailsItem[0].strMeal }</h1>
         {shareButton && <p>Link copied!</p>}

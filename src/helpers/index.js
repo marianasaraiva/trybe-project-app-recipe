@@ -3,13 +3,16 @@ import { getLocalStorage, setLocalStorage } from '../services/LocalStorage';
 export const concatItensRecipes = (item, typeFilter, typeFilter2) => {
   const ingredients = Object.entries(item)
     .filter((a) => a[0]
-      .includes(typeFilter) && a[1] !== '' && a[1] !== null)
+      .includes(typeFilter) && a[1] !== '' && a[1] !== null && a[1] !== ' ')
     .map((b) => b[1]);
   const valuesIngredients = Object.entries(item)
     .filter((d) => d[0]
-      .includes(typeFilter2) && d[1] !== ' ' && d[1] !== null)
+      .includes(typeFilter2) && d[1] !== ' ' && d[1] !== null && d[1] !== '')
     .map((b) => b[1]);
-  return ingredients.concat(valuesIngredients);
+  const teste = [];
+  ingredients.forEach((val, index) => teste
+    .push(`${val} - ${valuesIngredients[index]}`));
+  return teste;
 };
 
 const setObjFavoriteFoods = (detailsItem) => ({
@@ -33,8 +36,8 @@ export const setObjFavoriteDrinks = (detailsItem) => ({
 });
 
 export const handleFavoriteDrinks = (item) => {
+  console.log(item);
   const setFavorite = setObjFavoriteDrinks(item);
-  console.log(setFavorite);
   if (getLocalStorage('favoriteRecipes')) {
     const getStorage = JSON.parse(getLocalStorage('favoriteRecipes'));
     getStorage.push(setFavorite);
@@ -59,4 +62,23 @@ export const removeFavorite = (idPage) => {
   const getFavorites = JSON.parse(getLocalStorage('favoriteRecipes'));
   const filter = getFavorites.filter(({ id }) => id !== idPage);
   setLocalStorage('favoriteRecipes', JSON.stringify(filter));
+};
+
+export const checkInputFoods = (index) => {
+  if (getLocalStorage('inProgressRecipes')) {
+    const item = JSON.parse(getLocalStorage('inProgressRecipes'));
+    const itensMeals = item.meals;
+    if (!itensMeals[id]) itensMeals[id] = [];
+    if (itensMeals[id].includes(index)) {
+      const remove = itensMeals[id].filter((i) => i !== index);
+      const newObj = { ...item, meals: { ...itensMeals, [id]: remove } };
+      setLocalStorage('inProgressRecipes', JSON.stringify(newObj));
+      setCheckBox(remove);
+    } else {
+      const ids = [...itensMeals[id], index];
+      const newObjSet = { ...item, meals: { ...itensMeals, [id]: ids } };
+      setLocalStorage('inProgressRecipes', JSON.stringify(newObjSet));
+      setCheckBox(ids);
+    }
+  }
 };
