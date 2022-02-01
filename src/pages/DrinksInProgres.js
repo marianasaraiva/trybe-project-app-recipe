@@ -4,7 +4,6 @@ import FavoriteButtonsDrinks from '../components/FavoriteButtonDrinks';
 import { concatItensRecipes } from '../helpers';
 import { getLocalStorage, setLocalStorage } from '../services/LocalStorage';
 import { getDetailsDrinks } from '../services/requestApi';
-// import { getLocalStorage } from '../services/LocalStorage';
 import './pages.css/FoodsInProgress.css';
 
 function FoodsInProgress() {
@@ -17,11 +16,9 @@ function FoodsInProgress() {
 
   useEffect(() => {
     const teste44 = async (idParam) => {
-      const i = 'strIngredient';
-      const x = 'strMeasure';
       const returnApi = await getDetailsDrinks(idParam);
-      setItens(returnApi.drinks);
-      setFilter(concatItensRecipes(returnApi.drinks[0], i, x));
+      setItens(returnApi);
+      setFilter(concatItensRecipes(returnApi[0]));
     };
     teste44(id);
     if (getLocalStorage('inProgressRecipes')) {
@@ -56,7 +53,6 @@ function FoodsInProgress() {
       setLocalStorage('inProgressRecipes', JSON.stringify(newObjSet));
       setCheckBox(ids);
     }
-    // }
   };
 
   const clipBoardCopy = async () => {

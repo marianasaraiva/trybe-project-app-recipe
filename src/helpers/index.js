@@ -1,13 +1,15 @@
 import { getLocalStorage, setLocalStorage } from '../services/LocalStorage';
 
-export const concatItensRecipes = (item, typeFilter, typeFilter2) => {
+export const concatItensRecipes = (item) => {
+  const i = 'strIngredient';
+  const x = 'strMeasure';
   const ingredients = Object.entries(item)
     .filter((a) => a[0]
-      .includes(typeFilter) && a[1] !== '' && a[1] !== null && a[1] !== ' ')
+      .includes(i) && a[1] !== '' && a[1] !== null && a[1] !== ' ')
     .map((b) => b[1]);
   const valuesIngredients = Object.entries(item)
     .filter((d) => d[0]
-      .includes(typeFilter2) && d[1] !== ' ' && d[1] !== null && d[1] !== '')
+      .includes(x) && d[1] !== ' ' && d[1] !== null && d[1] !== '')
     .map((b) => b[1]);
   const teste = [];
   ingredients.forEach((val, index) => teste
@@ -36,7 +38,6 @@ export const setObjFavoriteDrinks = (detailsItem) => ({
 });
 
 export const handleFavoriteDrinks = (item) => {
-  console.log(item);
   const setFavorite = setObjFavoriteDrinks(item);
   if (getLocalStorage('favoriteRecipes')) {
     const getStorage = JSON.parse(getLocalStorage('favoriteRecipes'));

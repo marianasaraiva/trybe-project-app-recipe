@@ -9,9 +9,6 @@ import { handleFavoriteDrinks, removeFavorite } from '../helpers';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
-// const i = 'strIngredient';
-// const x = 'strMeasure';
-
 function DrinksDetails(props) {
   const { match: { params: { id } } } = props;
   const [detailsItem, setDetailsItem] = useState([]);
@@ -23,8 +20,8 @@ function DrinksDetails(props) {
 
   useEffect(() => {
     const teste = async (idItem) => {
-      const teste2 = await getDetailsDrinks(idItem);
-      setDetailsItem(teste2.drinks);
+      const getDrinksDetails = await getDetailsDrinks(idItem);
+      setDetailsItem(getDrinksDetails);
     };
     teste(id);
   }, [id, setDetailsItem]);
@@ -35,6 +32,7 @@ function DrinksDetails(props) {
       console.log(Object.keys(teste.cocktails).includes(id));
       setButton(Object.keys(teste.cocktails).includes(id));
     }
+
     if (getLocalStorage('favoriteRecipes')) {
       const teste3 = JSON.parse(getLocalStorage('favoriteRecipes'));
       teste3.forEach((item) => {

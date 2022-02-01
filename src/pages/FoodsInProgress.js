@@ -29,11 +29,9 @@ function FoodsInProgress() {
       setLocalStorage('inProgressRecipes', JSON.stringify(setStorage));
     }
     const filterList = async (idParam) => {
-      const i = 'strIngredient';
-      const x = 'strMeasure';
       const returnApi = await getDetailsFoods(idParam);
       setItens(returnApi);
-      setFilter(concatItensRecipes(returnApi[0], i, x));
+      setFilter(concatItensRecipes(returnApi[0]));
     };
     filterList(id);
   }, [id, setItens]);
@@ -61,22 +59,6 @@ function FoodsInProgress() {
     // https://www.kindacode.com/article/react-copy-to-clipboard-when-click-a-button-link/
     await navigator.clipboard.writeText(`http://localhost:3000/foods/${id}`);
   };
-
-  // useEffect(() => {
-  //   checkInput();
-  // }, []);
-
-  // const teste = (index) => {
-  //   let t = false;
-  //   if (checkBox !== '') {
-  //     checkBox.forEach((val) => {
-  //       if (index === val) {
-  //         t = true;
-  //       }
-  //     });
-  //     return t;
-  //   }
-  // };
 
   return (
     itens.length > 0
