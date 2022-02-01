@@ -9,6 +9,7 @@ import ExploreDrinkIngredients from '../pages/ExploreDrinkIngredients';
 import ExploreDrinks from '../pages/ExploreDrinks';
 import ExploreFoodIngredients from '../pages/ExploreFoodIngredients';
 import ExploreFoodNationalities from '../pages/ExploreFoodNationalities';
+import ExploreDrinkNationalities from '../pages/ExploreDrinkNationalities';
 import ExploreFoods from '../pages/ExploreFoods';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
 import Foods from '../pages/Foods';
@@ -39,6 +40,11 @@ const Routes = () => (
     <Route
       path="/explore/foods/nationalities"
       component={ ExploreFoodNationalities }
+      exact
+    />
+    <Route
+      path="/explore/drinks/nationalities"
+      component={ ExploreDrinkNationalities }
       exact
     />
     <Route path="/done-recipes" component={ DoneRecipes } exact />

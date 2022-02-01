@@ -10,7 +10,6 @@ function ExploreFoods() {
 
   const returnAPI = async () => {
     const response = await getRandomFood();
-    console.log(response[0].idMeal);
     setResult(response[0].idMeal);
   };
 
