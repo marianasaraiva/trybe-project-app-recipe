@@ -16,11 +16,9 @@ function FoodsInProgress() {
 
   useEffect(() => {
     const teste44 = async (idParam) => {
-      const i = 'strIngredient';
-      const x = 'strMeasure';
       const returnApi = await getDetailsDrinks(idParam);
-      setItens(returnApi.drinks);
-      setFilter(concatItensRecipes(returnApi.drinks[0], i, x));
+      setItens(returnApi);
+      setFilter(concatItensRecipes(returnApi[0]));
     };
     teste44(id);
     if (getLocalStorage('inProgressRecipes')) {
