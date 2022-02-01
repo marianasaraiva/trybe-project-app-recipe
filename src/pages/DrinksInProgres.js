@@ -4,7 +4,6 @@ import FavoriteButtonsDrinks from '../components/FavoriteButtonDrinks';
 import { concatItensRecipes } from '../helpers';
 import { getLocalStorage, setLocalStorage } from '../services/LocalStorage';
 import { getDetailsDrinks } from '../services/requestApi';
-// import { getLocalStorage } from '../services/LocalStorage';
 import './pages.css/FoodsInProgress.css';
 
 function FoodsInProgress() {
@@ -56,7 +55,6 @@ function FoodsInProgress() {
       setLocalStorage('inProgressRecipes', JSON.stringify(newObjSet));
       setCheckBox(ids);
     }
-    // }
   };
 
   const clipBoardCopy = async () => {
