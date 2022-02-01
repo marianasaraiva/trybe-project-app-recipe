@@ -29,6 +29,7 @@ function ExploreFoodNationalities() {
 
   useEffect(() => {
     const returnAPINationality = async (value) => {
+      // créditos ao Gabriel Leite e Renata Domingues na solução do country retornando "All"
       if (country === 'All') { return; }
       const response = await getFoodNationalities(value);
       setNationality(response.map((e) => e));
