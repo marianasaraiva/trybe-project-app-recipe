@@ -41,18 +41,17 @@ function FoodsInProgress() {
   }, [id, setItens]);
 
   const checkInput = (index) => {
-    // if (getLocalStorage('inProgressRecipes')) {
     const item = JSON.parse(getLocalStorage('inProgressRecipes'));
-    // const itensCockTails = item.cocktails;
+
     if (!item.cocktails[id]) item.cocktails[id] = [];
+
     if (item.cocktails[id].includes(index)) {
-      const remove = item.cocktails[id].filter((i) => i !== index)
-        .filter((n) => n !== null);
+      const remove = item.cocktails[id].filter((i) => i !== index);
       const newObj = { ...item, cocktails: { ...item.cocktails, [id]: remove } };
       setLocalStorage('inProgressRecipes', JSON.stringify(newObj));
       setCheckBox(remove);
     } else {
-      const ids = [...item.cocktails[id], index].filter((n) => n !== null);
+      const ids = [...item.cocktails[id], index];
       const newObjSet = { ...item, cocktails: { ...item.cocktails, [id]: ids } };
       setLocalStorage('inProgressRecipes', JSON.stringify(newObjSet));
       setCheckBox(ids);

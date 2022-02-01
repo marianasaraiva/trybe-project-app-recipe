@@ -28,36 +28,32 @@ function FoodsInProgress() {
       };
       setLocalStorage('inProgressRecipes', JSON.stringify(setStorage));
     }
-    const teste44 = async (idParam) => {
+    const filterList = async (idParam) => {
       const i = 'strIngredient';
       const x = 'strMeasure';
       const returnApi = await getDetailsFoods(idParam);
       setItens(returnApi);
       setFilter(concatItensRecipes(returnApi[0], i, x));
     };
-    teste44(id);
+    filterList(id);
   }, [id, setItens]);
 
   const checkInput = (index) => {
-    // if (getLocalStorage('inProgressRecipes')) {
     const item = JSON.parse(getLocalStorage('inProgressRecipes'));
-    const itensMeals = JSON.parse(getLocalStorage('inProgressRecipes')).meals;
-    console.log(itensMeals);
-    console.log(id);
-    if (!itensMeals[id]) itensMeals[id] = [];
-    if (itensMeals[id].includes(index)) {
-      const remove = itensMeals[id].filter((i) => i !== index)
-        .filter((n) => n !== null);
-      const newObj = { ...item, meals: { ...itensMeals, [id]: remove } };
+
+    if (!item.meals[id]) item.meals[id] = [];
+
+    if (item.meals[id].includes(index)) {
+      const remove = item.meals[id].filter((i) => i !== index);
+      const newObj = { ...item, meals: { ...item.meals, [id]: remove } };
       setLocalStorage('inProgressRecipes', JSON.stringify(newObj));
       setCheckBox(remove);
     } else {
-      const ids = [...itensMeals[id], index].filter((n) => n !== null);
-      const newObjSet = { ...item, meals: { ...itensMeals, [id]: ids } };
+      const ids = [...item.meals[id], index];
+      const newObjSet = { ...item, meals: { ...item.meals, [id]: ids } };
       setLocalStorage('inProgressRecipes', JSON.stringify(newObjSet));
       setCheckBox(ids);
     }
-    // }
   };
 
   const clipBoardCopy = async () => {
