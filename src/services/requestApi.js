@@ -96,3 +96,27 @@ export const getFoodNationalities = (nationality) => (
     .then((response) => response.json())
     .then((data) => data.meals)
 );
+
+export const getIngredientsFood = () => (
+  fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+    .then((response) => response.json())
+    .then((data) => data.meals.slice(0, +'12'))
+);
+
+// export const getIngredientCardFood = (ingredient) => (
+//   fetch(`https://www.themealdb.com/images/ingredients/${ingredient}.png`)
+//     .then((response) => response.json())
+//     .then((data) => data)
+// );
+
+export const getIngredientsDrink = () => (
+  fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
+    .then((response) => response.json())
+    .then((data) => data.drinks.slice(0, +'12'))
+);
+
+// export const getIngredientCardDrink = (ingredient) => (
+//   fetch(`https://www.thecocktaildb.com/images/ingredients/${ingredient}.png`)
+//     .then((response) => response.json())
+//     .then((data) => data)
+// );
