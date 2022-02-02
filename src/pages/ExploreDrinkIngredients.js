@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { getIngredientsDrink } from '../services/requestApi';
+import Context from '../context/Context';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function ExploreDrinkIngredients() {
   const [arrIngredientsDrink, setArrIngredientsDrink] = useState([]);
-  // const history = useHistory();
+  const { setGlobalValue } = useContext(Context);
+  const history = useHistory();
 
   const returnAPIIngredientsDrink = async () => {
     const response = await getIngredientsDrink();
@@ -25,7 +27,10 @@ function ExploreDrinkIngredients() {
           key={ index }
           type="button"
           data-testid={ `${index}-ingredient-card` }
-          // onClick={ () => history.push(`/drinks/${drink.idDrink}`) }
+          onClick={ () => {
+            setGlobalValue(drink.strIngredient1);
+            history.push('/drinks');
+          } }
         >
           <img
             src={ `https://www.thecocktaildb.com/images/ingredients/${drink.strIngredient1}-Small.png` }

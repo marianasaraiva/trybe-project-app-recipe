@@ -12,6 +12,7 @@ import {
 const Provider = ({ children }) => {
   const [drinksOrFood, setDrinksOrFood] = useState([]);
   const [selectButton, setSelectButton] = useState('');
+  const [globalValue, setGlobalValue] = useState(undefined);
   const history = useHistory();
 
   const fetchApiFoodOrDrink = async (search, type, title) => {
@@ -60,6 +61,8 @@ const Provider = ({ children }) => {
     setDrinksOrFood,
     fetchApiFoodOrDrink,
     handleClickAllFilterFoods,
+    globalValue,
+    setGlobalValue,
   };
 
   return (
