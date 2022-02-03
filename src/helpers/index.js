@@ -37,6 +37,47 @@ export const setObjFavoriteDrinks = (detailsItem) => ({
   image: detailsItem.strDrinkThumb,
 });
 
+const setObjFoods = (itens) => ({
+  id: itens.idMeal,
+  type: 'food',
+  nationality: itens.strArea || '',
+  category: itens.strCategory,
+  alcoholicOrNot: '',
+  name: itens.strMeal,
+  image: itens.strMealThumb,
+  doneDate: itens.strTags ? itens.dateModified : '',
+  tags: itens.strTags ? itens.strTags.split(',') : '',
+});
+
+const setObjDrinks = (itens) => ({
+  id: itens.idDrink,
+  type: 'drink',
+  nationality: '',
+  category: itens.strCategory,
+  alcoholicOrNot: itens.strAlcoholic,
+  name: itens.strDrink,
+  image: itens.strDrinkThumb,
+  doneDate: itens.dateModified,
+  tags: itens.strTags ? itens.strTags.split(',') : '',
+});
+
+export const saveStorageDone = (itens, type) => {
+  let setSaveObj = [];
+  if (type === 'food') {
+    console.log('oi');
+    setSaveObj = setObjFoods(itens);
+  } else {
+    setSaveObj = setObjDrinks(itens);
+  }
+  if (getLocalStorage('doneRecipes')) {
+    const getStorageItens = JSON.parse(getLocalStorage('doneRecipes'));
+    getStorageItens.push(setSaveObj);
+    setLocalStorage('doneRecipes', JSON.stringify(getStorageItens));
+  } else {
+    setLocalStorage('doneRecipes', JSON.stringify([setSaveObj]));
+  }
+};
+
 export const handleFavoriteDrinks = (item) => {
   const setFavorite = setObjFavoriteDrinks(item);
   if (getLocalStorage('favoriteRecipes')) {
