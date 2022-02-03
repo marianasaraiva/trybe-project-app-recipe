@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-// import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { getIngredientsFood } from '../services/requestApi';
+import Context from '../context/Context';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function ExploreFoodIngredients() {
   const [arrIngredients, setArrIngredients] = useState([]);
-  // const history = useHistory();
+  const { setGlobalValue } = useContext(Context);
+  const history = useHistory();
 
   const returnAPIIngredients = async () => {
     const response = await getIngredientsFood();
@@ -21,13 +23,15 @@ function ExploreFoodIngredients() {
     <div>
       <Header title="Explore Ingredients" />
       <div>
-        {console.log(arrIngredients)}
         {arrIngredients.map((ingredient, index) => (
           <button
             key={ index }
             type="button"
             data-testid={ `${index}-ingredient-card` }
-            // onClick={ () => history.push(`/foods/${ingredient.idMeal}`) }
+            onClick={ () => {
+              setGlobalValue(ingredient.strIngredient);
+              history.push('/foods');
+            } }
           >
             <img
               src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }

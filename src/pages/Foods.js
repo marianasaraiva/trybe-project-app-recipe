@@ -3,7 +3,10 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Context from '../context/Context';
-import { requestApiAllFoods, requestApiFoodsList } from '../services/requestApi';
+import {
+  requestApiAllFoods,
+  requestApiFoodsList,
+  searchApi } from '../services/requestApi';
 
 const Foods = () => {
   const {
@@ -11,6 +14,8 @@ const Foods = () => {
     setDrinksOrFood,
     handleClickFilter,
     handleClickAllFilterFoods,
+    globalValue,
+    setGlobalValue,
   } = useContext(Context);
   const [filterOptions, setFilterOptions] = useState([]);
   const history = useHistory();
@@ -26,7 +31,14 @@ const Foods = () => {
   useEffect(() => {
     const setFoodsApi = async () => {
       const returnFoods = await requestApiAllFoods();
-      setDrinksOrFood(returnFoods);
+      // Ajuda na lógica do colega Hugo Daniel
+      if (globalValue) {
+        const result = await searchApi(globalValue, 'ingredient', 'Foods');
+        setDrinksOrFood(result);
+        setGlobalValue(undefined);
+      } else {
+        setDrinksOrFood(returnFoods);
+      }
     };
     setFoodsApi();
   }, [setDrinksOrFood]);
