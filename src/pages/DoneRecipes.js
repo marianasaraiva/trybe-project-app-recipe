@@ -64,16 +64,18 @@ const DoneRecipes = () => {
             <p
               data-testid={ `${index}-horizontal-top-text` }
             >
-              { `${item.nationality} - ${item.category} - ${item.alcoholicOrNot}`}
+              {item.alcoholicOrNot
+                ? (`${item.nationality} - ${item.category} - ${item.alcoholicOrNot}`)
+                : (`${item.nationality} - ${item.category}`) }
             </p>
             <Link to={ `/${item.type}s/${item.id}` }>
               <p data-testid={ `${index}-horizontal-name` }>{ `${item.name}` }</p>
             </Link>
             <p data-testid={ `${index}-horizontal-done-date` }>{ item.doneDate }</p>
             {item.tags && item.tags
-              .map((tags, i) => (
+              .map((tags) => (
                 <p
-                  key={ i }
+                  key={ tags }
                   data-testid={ `${index}-${tags}-horizontal-tag` }
                 >
                   {tags}
