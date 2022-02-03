@@ -85,7 +85,6 @@ function DrinksDetails(props) {
   return (
     detailsItem.length > 0 && (
       <div>
-        {console.log(detailsItem[0])}
         <img src={ detailsItem[0].strDrinkThumb } data-testid="recipe-photo" alt="img" />
         <h1 data-testid="recipe-title">{ detailsItem[0].strDrink }</h1>
         {shareButton && <p>Link copied!</p>}
