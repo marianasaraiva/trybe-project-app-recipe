@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getLocalStorage } from '../services/LocalStorage';
+import { getLocalStorage, setLocalStorage } from '../services/LocalStorage';
 import Header from '../components/Header';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoriteRecipes() {
   const [favoriteRecipe, setFavoriteRecipe] = useState([]);
+  const [shareButton, setShareButton] = useState(false);
   console.log(favoriteRecipe);
 
   useEffect(() => {
@@ -13,6 +14,24 @@ function FavoriteRecipes() {
     setFavoriteRecipe(getSaveFavorites);
   }, []);
 
+  const clipBoardCopy = async (id, type) => {
+    setShareButton(true);
+    let setType = '';
+    if (type === 'food') {
+      setType = 'http://localhost:3000/foods/';
+    } else {
+      setType = 'http://localhost:3000/drinks/';
+    }
+    // https://www.kindacode.com/article/react-copy-to-clipboard-when-click-a-button-link/
+    await navigator.clipboard.writeText(`${setType}${id}`);
+  };
+
+  const deleteFavoriteStore = (id) => {
+    const previousFavorite = JSON.parse(getLocalStorage('favoriteRecipes'))
+      .filter((unfollow) => unfollow.id !== id);
+    setLocalStorage('favoriteRecipes', JSON.stringify(previousFavorite));
+    setFavoriteRecipe(previousFavorite);
+  };
   return (
     <div>
       <Header title="Favorite Recipes" />
@@ -50,10 +69,12 @@ function FavoriteRecipes() {
                 : (`${item.nationality} - ${item.category}`) }
             </p>
             <p data-testid={ `${index}-horizontal-name` }>{ `${item.name}` }</p>
+            {shareButton && <p>Link copied!</p>}
             <button
               type="button"
               data-testid={ `${index}-horizontal-share-btn` }
               src={ shareIcon }
+              onClick={ () => clipBoardCopy(item.id, item.type) }
             >
               <img
                 alt="Compartilhar"
@@ -63,6 +84,7 @@ function FavoriteRecipes() {
               type="button"
               data-testid={ `${index}-horizontal-favorite-btn` }
               src={ blackHeartIcon }
+              onClick={ () => deleteFavoriteStore(item.id) }
             >
               <img
                 alt="Favoritas"
