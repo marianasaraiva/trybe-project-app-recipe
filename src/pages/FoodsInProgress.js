@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { concatItensRecipes } from '../helpers';
+import { concatItensRecipes, saveStorageDone } from '../helpers';
 import { getLocalStorage, setLocalStorage } from '../services/LocalStorage';
 import { getDetailsFoods } from '../services/requestApi';
 import FavoriteButtonFoods from '../components/FavoriteButtonFoods';
@@ -64,6 +64,7 @@ function FoodsInProgress() {
     itens.length > 0
       && (
         <div>
+          {console.log(itens[0])}
           <img data-testid="recipe-photo" src={ itens[0].strMealThumb } alt="img" />
           <p data-testid="recipe-title">{ itens[0].strMeal }</p>
           {shareButton && <p>Link copied!</p>}
@@ -101,7 +102,10 @@ function FoodsInProgress() {
             type="button"
             data-testid="finish-recipe-btn"
             disabled={ checkBox.length !== filter.length }
-            onClick={ () => history.push('/done-recipes') }
+            onClick={ () => {
+              saveStorageDone(itens[0], 'food');
+              history.push('/done-recipes');
+            } }
           >
             Finalizar Receita
           </button>
