@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getLocalStorage } from '../services/LocalStorage';
 import Header from '../components/Header';
+import shareIcon from '../images/shareIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoriteRecipes() {
   const [favoriteRecipe, setFavoriteRecipe] = useState([]);
@@ -51,14 +53,20 @@ function FavoriteRecipes() {
             <button
               type="button"
               data-testid={ `${index}-horizontal-share-btn` }
+              src={ shareIcon }
             >
-              Compartilhar
+              <img
+                alt="Compartilhar"
+              />
             </button>
             <button
               type="button"
               data-testid={ `${index}-horizontal-favorite-btn` }
+              src={ blackHeartIcon }
             >
-              Favoritos
+              <img
+                alt="Favoritas"
+              />
             </button>
           </>
         ))}
