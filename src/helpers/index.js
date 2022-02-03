@@ -45,7 +45,7 @@ const setObjFoods = (itens) => ({
   alcoholicOrNot: '',
   name: itens.strMeal,
   image: itens.strMealThumb,
-  doneDate: itens.strTags ? itens.dateModified : '',
+  doneDate: itens.dateModified ? itens.dateModified : '',
   tags: itens.strTags ? itens.strTags.split(',') : '',
 });
 
@@ -57,14 +57,13 @@ const setObjDrinks = (itens) => ({
   alcoholicOrNot: itens.strAlcoholic,
   name: itens.strDrink,
   image: itens.strDrinkThumb,
-  doneDate: itens.dateModified,
+  doneDate: itens.dateModified ? itens.dateModified : '',
   tags: itens.strTags ? itens.strTags.split(',') : '',
 });
 
 export const saveStorageDone = (itens, type) => {
   let setSaveObj = [];
   if (type === 'food') {
-    console.log('oi');
     setSaveObj = setObjFoods(itens);
   } else {
     setSaveObj = setObjDrinks(itens);
