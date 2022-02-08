@@ -33,7 +33,7 @@ function Header({ title }) {
             alt="profile"
           />
         </button>
-        <h1 data-testid="page-title">{ title }</h1>
+        <h1 className="title" data-testid="page-title">{ title }</h1>
         {removeScan.includes(title) === false
         && (
           <button

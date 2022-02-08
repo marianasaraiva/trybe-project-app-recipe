@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media only screen and ( max-width : 600px ) {
+
+  .container_foods {
+    display: grid;
+    justify-content: center;
+    padding: 5vw;
+  }
+
+  .container_category {
+    margin: 0 0 4vw;
+  }
+
+  .btn_category {
+    background-color: rgb(243, 250, 237);
+    border-radius: 2vw;
+    font-size: 5vw;
+    font-weight: 700;
+    margin: 1vw;
+    width: 28vw;
+  }
+
+  .btn_category:hover {
+    background-color: rgb(98, 140, 71);
+  }
+
+  .container-card {
+    margin-bottom: 18vw;
+  }
+
+  .card-food {
+    border-radius: 2vw;
+    box-shadow: 0.1vw 1vw 1vw rgba(0, 0, 0, 0.529);
+    margin: 2vw;
+    width: 41vw;
+  }
+
+  .image-food {
+    border-radius: 2vw 2vw 0 0;
+    height: 25vw;
+    width: 40vw;
+  }
+
+  .container-title-food {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .title-food {
+    font-size: 5vw;
+    font-weight: 500;
+    margin: 5vw 2vw 1.5vw;
+  }
+}

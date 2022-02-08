@@ -1,4 +1,24 @@
-footer {
-  bottom: 0;
-  position: fixed;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media only screen and ( max-width : 600px ) {
+
+  .container-footer {
+    background-color: rgb(98, 140, 71);
+    bottom: 0;
+    display: flex;
+    height: 20vw;
+    justify-content: space-between;
+    padding: 2vw;
+    position: fixed;
+    width: 100%;
+  }
+
+  .btn_icon {
+    background-color: rgb(98, 140, 71);
+    border: none;
+  }
 }

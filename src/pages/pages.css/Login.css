@@ -18,33 +18,42 @@
 
   .container-component {
     display: grid;
+    margin-top: 5vh;
+    text-align: center;
   }
 
-  .container-component h1 {
-    margin: auto;
-    margin-bottom: 4vw;
+  .container-input {
+    margin-top: 3vh;
   }
 
   .input {
     border: 0.5vw solid black;
     border-radius: 1.5vw;
     color: black;
+    font-weight: 800;
     height: 10vw;
     margin-bottom: 2vw;
+    text-align: center;
     width: 80vw;
   }
 
   .btn-login {
-    background-color: rgb(2, 233, 2);
+    background-color: rgb(98, 140, 71);
     border-radius: 1.5vw;
-    color: black;
+    color: white;
     font-size: 5vw;
     font-weight: 600;
     height: 10vw;
+    width: 80vw;
   }
 
   .btn-login:disabled {
-    background-color: grey;
+    background-color: rgb(243, 250, 237);
+    color: black;
+  }
+
+  .container-component img {
+    width: 70vw;
   }
 
 }

@@ -25,25 +25,23 @@ const FavoriteButtonFoods = ({ id, details }) => {
         <button
           type="button"
           data-testid="favorite-btn"
-          src={ whiteHeartIcon }
           onClick={ () => {
             handleFavorite(details);
             setIsFavorite(true);
           } }
         >
-          <img alt="notIsFavorite" />
+          <img src={ whiteHeartIcon } alt="notIsFavorite" />
         </button>)
         : (
           <button
             type="button"
             data-testid="favorite-btn"
-            src={ blackHeartIcon }
             onClick={ () => {
               removeFavorite(id);
               setIsFavorite(false);
             } }
           >
-            <img alt="isFavorite" />
+            <img src={ blackHeartIcon } alt="isFavorite" />
           </button>)}
     </div>
   );

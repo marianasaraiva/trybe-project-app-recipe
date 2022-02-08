@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Context from '../context/Context';
+import './pages.css/Foods.css';
 import {
   requestApiAllFoods,
   requestApiFoodsList,
@@ -46,42 +47,57 @@ const Foods = () => {
   return (
     <div>
       <Header title="Foods" />
-      <div>
-        { filterOptions.length > 0 && filterOptions.map(({ strCategory }) => (
+      <div className="container_foods">
+        <div className="container_category">
           <button
+            className="btn_category"
+            data-testid="All-category-filter"
+            onClick={ () => handleClickAllFilterFoods('Foods') }
             type="button"
-            key={ strCategory }
-            data-testid={ `${strCategory}-category-filter` }
-            onClick={ () => handleClickFilter(strCategory, 'Foods') }
           >
-            {strCategory}
+            All
           </button>
-        ))}
-        <button
-          data-testid="All-category-filter"
-          onClick={ () => handleClickAllFilterFoods('Foods') }
-          type="button"
-        >
-          All
-        </button>
+          { filterOptions.length > 0 && filterOptions.map(({ strCategory }) => (
+            <button
+              className="btn_category"
+              type="button"
+              key={ strCategory }
+              data-testid={ `${strCategory}-category-filter` }
+              onClick={ () => handleClickFilter(strCategory, 'Foods') }
+            >
+              {strCategory}
+            </button>
+          ))}
+        </div>
+        <div className="container-card">
+          { drinksOrFood.length > 0 && (
+            drinksOrFood.slice(0, +'12').map((comida, index) => (
+              <button
+                className="card-food"
+                key={ index }
+                type="button"
+                data-testid={ `${index}-recipe-card` }
+                onClick={ () => history.push(`/foods/${comida.idMeal}`) }
+              >
+                <img
+                  className="image-food"
+                  src={ comida.strMealThumb }
+                  alt="img comida"
+                  data-testid={ `${index}-card-img` }
+                />
+                <div className="container-title-food">
+                  <h1
+                    className="title-food"
+                    data-testid={ `${index}-card-name` }
+                  >
+                    { comida.strMeal }
+                  </h1>
+                </div>
+              </button>
+            ))
+          )}
+        </div>
       </div>
-      { drinksOrFood.length > 0 && (
-        drinksOrFood.slice(0, +'12').map((comida, index) => (
-          <button
-            key={ index }
-            type="button"
-            data-testid={ `${index}-recipe-card` }
-            onClick={ () => history.push(`/foods/${comida.idMeal}`) }
-          >
-            <img
-              src={ comida.strMealThumb }
-              alt="img comida"
-              data-testid={ `${index}-card-img` }
-            />
-            <h1 data-testid={ `${index}-card-name` }>{ comida.strMeal }</h1>
-          </button>
-        ))
-      )}
       <Footer />
     </div>
   );

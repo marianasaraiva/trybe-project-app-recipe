@@ -3,14 +3,18 @@ import { useHistory, useParams } from 'react-router-dom';
 import { concatItensRecipes, saveStorageDone } from '../helpers';
 import { getLocalStorage, setLocalStorage } from '../services/LocalStorage';
 import { getDetailsFoods } from '../services/requestApi';
-import FavoriteButtonFoods from '../components/FavoriteButtonFoods';
+// import FavoriteButtonFoods from '../components/FavoriteButtonFoods';
 import './pages.css/FoodsInProgress.css';
+import ShareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FoodsInProgress() {
   const { id } = useParams();
   const [itens, setItens] = useState([]);
   const [filter, setFilter] = useState([]);
   const [checkBox, setCheckBox] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [shareButton, setShareButton] = useState(false);
   const history = useHistory();
 
@@ -63,52 +67,114 @@ function FoodsInProgress() {
   return (
     itens.length > 0
       && (
-        <div>
-          {console.log(itens[0])}
-          <img data-testid="recipe-photo" src={ itens[0].strMealThumb } alt="img" />
-          <p data-testid="recipe-title">{ itens[0].strMeal }</p>
-          {shareButton && <p>Link copied!</p>}
-          <button
-            type="button"
-            data-testid="share-btn"
-            onClick={ clipBoardCopy }
-          >
-            Share
-          </button>
-          <FavoriteButtonFoods id={ id } details={ itens[0] } />
-          <p data-testid="recipe-category">{ itens[0].strCategory }</p>
-          {filter.map((igredient, index) => (
-            <div key={ index }>
-              <label
-                htmlFor={ `${index}-ingredient-step` }
-                data-testid={ `${index}-ingredient-step` }
+        <div className="container-details">
+          <img
+            className="img_header"
+            data-testid="recipe-photo"
+            src={ itens[0].strMealThumb }
+            alt="img"
+          />
+
+          <div className="container-title-food-details">
+            <div className="container-fluid-title">
+              <p
+                className="food-title"
+                data-testid="recipe-title"
               >
-                <input
-                  id={ `${index}-ingredient-step` }
-                  checked={ checkBox.includes(index) }
-                  onChange={ () => checkInput(index) }
-                  type="checkbox"
-                />
-                <span
-                  className={ checkBox.includes(index) ? 'marked' : 'notmarked' }
-                >
-                  {igredient}
-                </span>
-              </label>
+                { itens[0].strMeal }
+              </p>
+              <p
+                className="category-title"
+                data-testid="recipe-category"
+              >
+                { itens[0].strCategory }
+
+              </p>
             </div>
-          ))}
-          <p data-testid="instructions">{ itens[0].strInstructions }</p>
-          <button
-            type="button"
-            data-testid="finish-recipe-btn"
-            disabled={ checkBox.length !== filter.length }
-            onClick={ () => {
-              saveStorageDone(itens[0], 'food');
-              history.push('/done-recipes');
-            } }
-          >
-            Finalizar Receita
-          </button>
+
+            <div className="container-share-favorite">
+              <button
+                className="img-share img-style"
+                type="button"
+                data-testid="share-btn"
+                onClick={ clipBoardCopy }
+              >
+                <img className="width" src={ ShareIcon } alt="Icon share" />
+              </button>
+              { !isFavorite ? (
+                <button
+                  className="img-favorite img-style"
+                  type="button"
+                  data-testid="favorite-btn"
+                  src={ whiteHeartIcon }
+                  onClick={ () => {
+                    handleFavorite(detailsItem[0]);
+                    setIsFavorite(true);
+                  } }
+                >
+                  <img className="width" src={ whiteHeartIcon } alt="notIsFavorite" />
+                </button>)
+                : (
+                  <button
+                    type="button"
+                    data-testid="favorite-btn"
+                    onClick={ () => {
+                      removeFavorite(id);
+                      setIsFavorite(false);
+                    } }
+                  >
+                    <img className="width" src={ blackHeartIcon } alt="isFavorite" />
+                  </button>
+                )}
+              <div>{shareButton && <p>Link copied!</p>}</div>
+            </div>
+
+          </div>
+
+          <div className="container-ingredients grid">
+            {filter.map((igredient, index) => (
+              <div
+                className="container-check"
+                key={ index }
+              >
+                <label
+                  htmlFor={ `${index}-ingredient-step` }
+                  data-testid={ `${index}-ingredient-step` }
+                >
+                  <input
+                    id={ `${index}-ingredient-step` }
+                    checked={ checkBox.includes(index) }
+                    onChange={ () => checkInput(index) }
+                    type="checkbox"
+                  />
+                  <span
+                    className={ checkBox.includes(index) ? 'marked' : 'notmarked' }
+                  >
+                    {igredient}
+                  </span>
+                </label>
+              </div>
+            ))}
+          </div>
+
+          <div className="instructions-container margin-botton">
+            <p data-testid="instructions">{ itens[0].strInstructions }</p>
+          </div>
+
+          <div className="container-start-recipes">
+            <button
+              className="buttonFooter"
+              type="button"
+              data-testid="finish-recipe-btn"
+              disabled={ checkBox.length !== filter.length }
+              onClick={ () => {
+                saveStorageDone(itens[0], 'food');
+                history.push('/done-recipes');
+              } }
+            >
+              Finalizar Receita
+            </button>
+          </div>
         </div>
       ));
 }

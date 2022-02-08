@@ -1,22 +1,158 @@
-.recomendations {
-  display: flex;
-  overflow-x: scroll;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.divImg {
-  width: 100%;
-}
+@media only screen and ( max-width : 600px ) {
 
-.divImg img {
-  padding: 25%;
-  width: 100vw;
-}
+  .recomendations {
+    display: flex;
+    margin: 5vw 0 15vw;
+    overflow-x: scroll;
+  }
 
-.buttonFooter {
-  bottom: 0;
-  position: fixed;
-}
+  .divImg {
+    border: 2px solid black;
+    text-align: center;
+    width: 100%;
+  }
 
-.ajust {
-  display: flex;
+  .divImg p {
+    font-size: 5vw;
+    font-weight: 600;
+    margin: 2vw;
+  }
+
+  .divImg img {
+    width: 45vw;
+  }
+
+  .buttonFooter {
+    bottom: 0;
+    position: fixed;
+  }
+
+  .ajust {
+    display: flex;
+  }
+
+  .img_header {
+    height: 40vh;
+    width: 100vw;
+  }
+
+  .container-title-food-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 3vw;
+  }
+
+  .container-fluid-title {
+    margin-top: 2vw;
+  }
+
+  .food-title {
+    font-size: 13vw;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .category-title {
+    color: rgb(97, 97, 97);
+    font-size: 8vw;
+    font-weight: 520;
+    margin-top: 0;
+  }
+
+  .container-share-favorite {
+    margin-top: 5vw;
+  }
+
+  .img-style {
+    background-color: white;
+    border: none;
+  }
+
+  .img-share {
+    margin-right: 3vw;
+  }
+
+  .img-favorite {
+    margin-right: 2vw;
+  }
+
+  .width {
+    width: 10vw;
+  }
+
+  .vide-tube {
+    height: 30vh;
+    width: 100vw;
+  }
+
+  .instructions-container {
+    border: 1vw solid black;
+    font-size: 5vw;
+    margin: auto;
+    margin-top: 2vh;
+    padding: 1vh 5vw;
+    text-align: justify;
+    width: 95vw;
+  }
+
+  .margin-botton {
+    margin-bottom: 15vw;
+  }
+
+  .container-start-recipes {
+    width: 100vw;
+  }
+
+  .container-start-recipes button {
+    background-color: rgb(98, 140, 71);
+    font-size: 5vw;
+    font-weight: 700;
+    height: 6vh;
+    width: 100vw;
+  }
+
+  .card-food-test {
+    border-radius: 2vw;
+    box-shadow: 0.1vw 1vw 1vw rgba(0, 0, 0, 0.529);
+    margin: 2vw;
+  }
+
+  .grid {
+    display: grid;
+    padding: 5vw;
+  }
+
+  .container-check label, span {
+    color: white;
+    font-size: 6vw;
+    margin: 2vw;
+  }
+
+  .container-check input {
+    appearance: none;
+    height: 4vw;
+    width: 4vw;
+  }
+
+  .border {
+    border: 0.1vw solid black;
+    width: 2vw;
+  }
+
+  .container-check input:checked {
+    background-color: black;
+
+    /* stylelint-disable-next-line max-line-length */
+    clip-path: polygon(21% 40%, 21% 40%, 8% 54%, 25% 68%, 36% 77%, 47% 65%, 48% 64%, 64% 47%, 75% 35%, 93% 13%, 81% 4%, 36% 54%);
+  }
+
+  .marked {
+    color: black;
+  }
 }
