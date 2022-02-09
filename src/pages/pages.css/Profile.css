@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media only screen and ( max-width : 600px ) {
+
+  .Profile {
+    background-color: rgb(98, 140, 71);
+    display: grid;
+    justify-content: left;
+  }
+
+  .font {
+    font-size: 7vw;
+    font-weight: 800;
+    margin-top: 5vw;
+  }
+
+  .margin-btn {
+    background-color: rgb(243, 250, 237);
+    border-radius: 3vw;
+    font-size: 7vw;
+    font-weight: 600;
+    margin-bottom: 5vw;
+  }
+
+  .margin-btn:hover {
+    background-color: rgb(98, 140, 71);
+    color: white;
+  }
+}

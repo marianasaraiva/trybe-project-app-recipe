@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@media only screen and ( max-width : 600px ) {
+
+  .display-grid {
+    display: grid;
+    justify-content: center;
+  }
+
+  .font-size {
+    font-size: 9vw;
+  }
+
+  .btns-favorites-recipes {
+    margin: 4vw 0;
+    text-align: center;
+  }
+
+  .btn-favorites-recipes {
+    background-color: rgb(243, 250, 237);
+    border-radius: 1.5vw;
+    font-size: 5vw;
+    font-weight: 700;
+    margin: 0 2vw;
+    text-align: center;
+    width: 25vw;
+  }
+
+  .btn-favorites-recipes:hover {
+    background-color: rgb(98, 140, 71);
+    color: white;
+  }
+
+  .flex {
+    background-color: rgb(243, 250, 237);
+    border: 1vw solid black;
+    border-radius: 3vw;
+    box-shadow: 0.1vw 1vw 1vw rgba(0, 0, 0, 0.529);
+    display: flex;
+    height: 40vw;
+    margin: 5vw;
+    width: 90vw;
+  }
+
+  .container-img {
+    margin-right: 5vw;
+  }
+
+  .img-food {
+    border-radius: 2vw 0 0 2vw;
+    height: 38.1vw;
+    width: 45vw;
+  }
+
+  .img-btn {
+    margin: 0 2vw;
+    width: 8vw;
+  }
+
+  .img-btn2 {
+    margin: 0 2vw;
+    width: 5vw;
+  }
+
+  .text {
+    color: black;
+    font-size: 10vw;
+    font-weight: 800;
+  }
+
+  .container-atributes button {
+    background-color: rgb(243, 250, 237);
+    border: none;
+  }
+
+  .flex-container {
+    background-color: rgb(243, 250, 237);
+    border: 1vw solid black;
+    border-radius: 3vw;
+    box-shadow: 0.1vw 1vw 1vw rgba(0, 0, 0, 0.529);
+    display: flex;
+    margin: 5vw;
+  }
+
+  .display-flex {
+    display: flex;
+  }
+
+  .name2 {
+    font-size: 4vw;
+    margin-top: 5vw;
+  }
+
+  .img-food2 {
+    border-radius: 2vw 0 0 2vw;
+    height: 38.9vw;
+    width: 45vw;
+  }
+
+  .text2 {
+    color: black;
+    font-size: 6vw;
+    font-weight: 800;
+  }
+
+  .btn-favorites-recipes2 {
+    background-color: rgb(243, 250, 237);
+    border-radius: 2vw;
+    box-shadow: 0.1vw 0.5vw 0.5vw rgba(0, 0, 0, 0.529);
+    font-size: 5vw;
+    font-weight: 800;
+    margin: 2vw;
+    padding: 2vw;
+  }
+
+  .btn-favorites-recipes2:hover {
+    background-color: rgb(98, 140, 71);
+    color: white;
+  }
+}

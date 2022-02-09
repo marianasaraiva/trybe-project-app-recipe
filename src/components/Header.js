@@ -21,7 +21,7 @@ function Header({ title }) {
   const history = useHistory();
   return (
     <header>
-      <div className="container-fluid-header">
+      <div className="container-fluid-header ">
         <button
           type="button"
           onClick={ () => history.push('/profile') }
@@ -33,7 +33,12 @@ function Header({ title }) {
             alt="profile"
           />
         </button>
-        <h1 className="title" data-testid="page-title">{ title }</h1>
+        <h1
+          className="title font-size"
+          data-testid="page-title"
+        >
+          { title }
+        </h1>
         {removeScan.includes(title) === false
         && (
           <button

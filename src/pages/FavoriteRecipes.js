@@ -4,6 +4,7 @@ import { getLocalStorage, setLocalStorage } from '../services/LocalStorage';
 import Header from '../components/Header';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import './pages.css/FavoriteRecipes.css';
 
 function FavoriteRecipes() {
   const [favoriteRecipe, setFavoriteRecipe] = useState([]);
@@ -34,73 +35,92 @@ function FavoriteRecipes() {
     setFavoriteRecipe(previousFavorite);
   };
   return (
-    <div>
-      <Header title="Favorite Recipes" />
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => setFilter('') }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ () => setFilter('food') }
-      >
-        Foods
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => setFilter('drink') }
-      >
-        Drinks
-      </button>
-      {favoriteRecipe && favoriteRecipe
-        .filter(({ type }) => type.includes(filter))
-        .map((item, index) => (
-          <>
-            <Link to={ `/${item.type}s/${item.id}` }>
-              <img
-                data-testid={ `${index}-horizontal-image` }
-                src={ item.image }
-                alt="img"
-              />
-            </Link>
-            <p
-              data-testid={ `${index}-horizontal-top-text` }
-            >
-              {item.alcoholicOrNot
-                ? (`${item.nationality} - ${item.category} - ${item.alcoholicOrNot}`)
-                : (`${item.nationality} - ${item.category}`) }
-            </p>
-            <Link to={ `/${item.type}s/${item.id}` }>
-              <p data-testid={ `${index}-horizontal-name` }>{ `${item.name}` }</p>
-            </Link>
-            {shareButton && <p>Link copied!</p>}
-            <button
-              type="button"
-              data-testid={ `${index}-horizontal-share-btn` }
-              src={ shareIcon }
-              onClick={ () => clipBoardCopy(item.id, item.type) }
-            >
-              <img
-                alt="Compartilhar"
-              />
-            </button>
-            <button
-              type="button"
-              data-testid={ `${index}-horizontal-favorite-btn` }
-              src={ blackHeartIcon }
-              onClick={ () => deleteFavoriteStore(item.id) }
-            >
-              <img
-                alt="Favoritas"
-              />
-            </button>
-          </>
-        ))}
+    <div className="display-grid">
+      <div className="Profile">
+        <Header title="Favorite Recipes" />
+      </div>
+      <div className="btns-favorites-recipes">
+        <button
+          className="btn-favorites-recipes"
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ () => setFilter('') }
+        >
+          All
+        </button>
+        <button
+          className="btn-favorites-recipes"
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ () => setFilter('food') }
+        >
+          Foods
+        </button>
+        <button
+          className="btn-favorites-recipes"
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => setFilter('drink') }
+        >
+          Drinks
+        </button>
+      </div>
+      <div className="flex ">
+        {favoriteRecipe && favoriteRecipe
+          .filter(({ type }) => type.includes(filter))
+          .map((item, index) => (
+            <>
+              <div className="container-img">
+                <Link to={ `/${item.type}s/${item.id}` }>
+                  <img
+                    className="img-food"
+                    data-testid={ `${index}-horizontal-image` }
+                    src={ item.image }
+                    alt="img"
+                  />
+                </Link>
+              </div>
+
+              <div className="container-atributes">
+                <Link to={ `/${item.type}s/${item.id}` }>
+                  <p
+                    className="text"
+                    data-testid={ `${index}-horizontal-name` }
+                  >
+                    { `${item.name}` }
+
+                  </p>
+                </Link>
+                <div>
+                  <button
+                    type="button"
+                    data-testid={ `${index}-horizontal-share-btn` }
+                    onClick={ () => clipBoardCopy(item.id, item.type) }
+                  >
+                    <img
+                      className="img-btn"
+                      src={ shareIcon }
+                      alt="Compartilhar"
+                    />
+                  </button>
+                  <button
+                    type="button"
+                    data-testid={ `${index}-horizontal-favorite-btn` }
+                    onClick={ () => deleteFavoriteStore(item.id) }
+                  >
+                    <img
+                      className="img-btn"
+                      src={ blackHeartIcon }
+                      alt="Favoritas"
+                    />
+                  </button>
+
+                </div>
+                {shareButton && <p>Link copied!</p>}
+              </div>
+            </>
+          ))}
+      </div>
     </div>);
 }
 

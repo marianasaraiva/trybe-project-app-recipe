@@ -18,29 +18,36 @@ function ExploreFoods() {
   }, []);
 
   return (
-    <div>
-      <Header title="Explore Foods" />
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => history.push('/explore/foods/ingredients') }
-      >
-        By Ingredient
-      </button>
-      <button
-        type="button"
-        data-testid="explore-by-nationality"
-        onClick={ () => history.push('/explore/foods/nationalities') }
-      >
-        By Nationality
-      </button>
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ () => history.push(`/foods/${result}`) }
-      >
-        Surprise me!
-      </button>
+    <div className="container-recipes">
+      <div className="Profile">
+        <Header title="Explore Foods" />
+      </div>
+      <div className="btns-favorites-recipes grid">
+        <button
+          className="btn-favorites-recipes2"
+          type="button"
+          data-testid="explore-by-ingredient"
+          onClick={ () => history.push('/explore/foods/ingredients') }
+        >
+          By Ingredient
+        </button>
+        <button
+          className="btn-favorites-recipes2"
+          type="button"
+          data-testid="explore-by-nationality"
+          onClick={ () => history.push('/explore/foods/nationalities') }
+        >
+          By Nationality
+        </button>
+        <button
+          className="btn-favorites-recipes2"
+          type="button"
+          data-testid="explore-surprise"
+          onClick={ () => history.push(`/foods/${result}`) }
+        >
+          Surprise me!
+        </button>
+      </div>
       <Footer />
     </div>
   );

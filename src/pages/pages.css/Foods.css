@@ -27,6 +27,7 @@
 
   .btn_category:hover {
     background-color: rgb(98, 140, 71);
+    color: white;
   }
 
   .container-card {
