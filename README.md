@@ -29,11 +29,11 @@ Projeto desenvolvido no bloco 19 de Front-end do curso de Desenvolvimento Web em
 
 ## Instruções para visualizar o projeto:
 
-1. Realizar o git clone ou;
+1. Visuzalização da aplicação com a resolução de tela de 360 x 640 (360 pixels de largura por 640 pixels de altura).
 
 2. Acesse pelo link GitPages: 
 
 ## Gif do projeto:
 <p align="center">
-  <img  src="" alt="App Recipes Gif"/>
+  <img  src="https://github.com/marianasaraiva/trybe-project-app-recipe/blob/main/App_Recipe.gif" alt="App Recipes Gif"/>
 </p>
