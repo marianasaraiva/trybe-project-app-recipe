@@ -29,7 +29,7 @@ Projeto desenvolvido no bloco 19 de Front-end do curso de Desenvolvimento Web em
 
 ## Instruções para visualizar o projeto:
 
-1. Visuzalização da aplicação com a resolução de tela de 360 x 640 (360 pixels de largura por 640 pixels de altura).
+1. Visualização da aplicação com a resolução de tela de 360 x 640 (360 pixels de largura por 640 pixels de altura).
 
 2. Acesse pelo link GitPages: 
 
